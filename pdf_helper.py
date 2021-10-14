@@ -1,5 +1,6 @@
 import nltk
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 
 from io import StringIO
 
@@ -23,7 +24,9 @@ def get_words(filename):
         print("Parsing PDF...")
         for page in PDFPage.create_pages(doc):
             interpreter.process_page(page)
+    lemmatizer = WordNetLemmatizer()
     words = []
+    word_count = {}
     print("Getting words...")
     for word in nltk.word_tokenize(output_string.getvalue()):
         # word_tokenize(str) automatically removes all punctuation marks
@@ -33,7 +36,14 @@ def get_words(filename):
             # - not a stopword (is, are, the, etc.)
             # - is in ASCII encoding
             words.append(word)
-    
+            lemma = lemmatizer.lemmatize(word).lower()
+            # lemmatize the word (return to base form)
+            if lemma in word_count:
+                word_count[lemma] += 1
+            else:
+                word_count[lemma] = 1
+            # word count required for term frequency database
+
     bigrams = []
     # bigrams: compound words made from 2 words
 
@@ -50,7 +60,8 @@ def get_words(filename):
         trigrams.append(words[i] + " " + words[i + 1] + " " + words[i + 2])
    
     print("Content and unique words parsed.")
-    # returns list [X, Y] where:
+    # returns list [X, Y, Z] where:
     # X: all valid words and bigrams in document in order (includes duplicates)
     # Y: all unique words and bigrams in document (no duplicates)
-    return [words + bigrams + trigrams, set(words).union(set(bigrams)).union(set(trigrams))]
+    # Z: words and their respective frequencies (no duplicates)
+    return [words + bigrams + trigrams, set(words).union(set(bigrams)).union(set(trigrams)), word_count]

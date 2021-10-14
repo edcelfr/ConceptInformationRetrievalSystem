@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="../static/css/register.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="#">
+        <div class="user-details">
+          <div class="input-box"> <!--Input Name (Last Name, Given Name)-->
+            <span class="details">Full Name</span> 
+            <input type="text" placeholder="e.g. Dela Cruz, Juan" id="name" required>
+          </div>
+          <div class="input-box"> <!--Input Student ID-->
+            <span class="details">CPU Student ID</span>
+            <input type="text" placeholder="e.g. 00-0000-00" id="id" required>
+          </div>
+          <div class="input-box"> <!--Input Student CPU Gmail-->
+            <span class="details">CPU G-mail</span>
+            <input type="text" placeholder="e.g. juan.delacruz-00@cpu.edu.ph" id="email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">College</span><!--Input Student College-->
+            <input type="text" placeholder="e.g. College of Computer Studies" id="college" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span> <!--Input Password-->
+            <input type="password" placeholder="Enter your password" id="password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span> <!--Input Password-->
+            <input type="password" placeholder="Confirm your password" id="confirm" required>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register" onclick="register()">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

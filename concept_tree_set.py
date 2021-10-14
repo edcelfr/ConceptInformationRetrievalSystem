@@ -17,18 +17,22 @@ class ConceptTreeSet:
         self.acquired_holonyms = [set() for i in range(len(concepts))]
         self.lemma_frequency = [0 for i in range(len(concepts))]
 
-    def add_concept(self, synset):
+    def add_concept(self, concept):
         for i in range(len(self.concepts)):
-            if (synset in self.concepts[i].hyponyms):
-                self.acquired_hyponyms[i].add(synset)
-            elif (synset in self.concepts[i].hypernyms):
-                self.acquired_hypernyms[i].add(synset)
-            elif (synset in self.concepts[i].meronyms):
-                self.acquired_meronyms[i].add(synset)
-            elif (synset in self.concepts[i].holonyms):
-                self.acquired_holonyms[i].add(synset)
-            elif (synset in self.concepts[i].siblings):
-                self.acquired_siblings[i].add(synset)
+            if (concept in self.concepts[i].hyponyms):
+                self.acquired_hyponyms[i].add(concept)
+            elif (concept in self.concepts[i].hypernyms):
+                self.acquired_hypernyms[i].add(concept)
+            elif (concept in self.concepts[i].meronyms):
+                self.acquired_meronyms[i].add(concept)
+            elif (concept in self.concepts[i].holonyms):
+                self.acquired_holonyms[i].add(concept)
+            elif (concept in self.concepts[i].siblings):
+                self.acquired_siblings[i].add(concept)
+
+    def add_concepts(self, concepts):
+        for concept in concepts:
+            self.add_concept(concept.concept)
 
     def add_word(self, lemma):
         for i in range(len(self.concepts)):
@@ -37,18 +41,23 @@ class ConceptTreeSet:
                 self.lemma_frequency[i] += 1
 
     def get_accuracy(self, index):
-        acc = 0
-        if (len(self.acquired_hypernyms[index]) > 0):
-            acc += 0.2
-        if (len(self.acquired_hyponyms[index]) > 0):
-            acc += 0.2
-        if (len(self.acquired_meronyms[index]) > 0):
-            acc += 0.2
-        if (len(self.acquired_holonyms[index]) > 0):
-            acc += 0.2
-        if (len(self.acquired_siblings[index]) > 0):
-            acc += 0.2
-        return round(acc, 2)
+        #acc = 0
+        #if (len(self.acquired_hypernyms[index]) > 0):
+            #acc += 0.2
+        #if (len(self.acquired_hyponyms[index]) > 0):
+            #acc += 0.2
+        #if (len(self.acquired_meronyms[index]) > 0):
+            #acc += 0.2
+        #if (len(self.acquired_holonyms[index]) > 0):
+            #acc += 0.2
+        #if (len(self.acquired_siblings[index]) > 0):
+            #acc += 0.2
+        #return round(acc, 2)
+        return len(self.acquired_hypernyms[index]) +\
+                len(self.acquired_hyponyms[index]) +\
+                len(self.acquired_meronyms[index]) +\
+                len(self.acquired_holonyms[index]) +\
+                len(self.acquired_siblings[index])
 
     def get_relevance_score(self, index):
         return round(self.get_accuracy(index) * self.lemma_frequency[index], 2)

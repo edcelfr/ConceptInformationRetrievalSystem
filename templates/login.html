@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login Page</title>
+      <link rel="stylesheet" href="../static/css/login.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="logo">
+            <div class="CPU-logo"><a href="/home"><img src="../static/images/cpu-seal.png" height="40" width="40"/></a></div>
+            <div class="CPU-logo-name"><a href="/home">Central Philippine University</a></div>
+         </div>
+         <div class="title-text">
+            <div class="title login">
+               Login
+            </div>
+         </div>
+         <div class="title-cont">
+             to view research documents
+         </div>
+
+         <div class="form-container">
+            <div class="slide-controls"><!-- buttons for switching student and admin login form-->
+                <input type="radio" name="slide" id="Student" checked>
+                <input type="radio" name="slide" id="Admin">
+                <label for="Student" class="slide Student">Student</label>
+                <label for="Admin" class="slide Admin">Admin</label>
+                <div class="slider-tab"></div><!-- slider tab for both switches-->
+            </div>
+            <div class="form-inner">
+               <form action="#" class="login"> <!--Login Students-->
+                  <div class="field"> <!-- Student Email Address -->
+                     <input type="text" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">  <!-- Student Password -->
+                     <input type="password" placeholder="Password" required>
+                  </div>
+                  <div class="pass-link"> <!-- Retrieve Password -->
+                     <a href="#">Forgot password?</a>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div> <!-- Login button -->
+                     <input type="submit" value="Login">
+                  </div>
+               </form>
+               
+                <form action="#" class="login"> <!-- Login Admin -->
+                    <div class="field"> <!-- Admin Email Address -->
+                        <input type="text" placeholder="Email Address" required>
+                    </div>
+                    <div class="field"> <!-- Admin Password -->
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="pass-link"> <!-- Retrieve Password -->
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <div class="field btn"> <!-- Login button -->
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Login">
+                        <button type="button">Register</button>
+                    </div>
+                    
+                </form>
+               
+
+            </div>
+         </div>
+      </div>
+      <script>
+         const loginForm = document.querySelector("form.login");
+         const StudentBtn = document.querySelector("label.Student");
+         const AdminBtn = document.querySelector("label.Admin");
+         AdminBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "-50%";
+         });
+         StudentBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "0%";
+         });
+      </script>
+   </body>
+</html>

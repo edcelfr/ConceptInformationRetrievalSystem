@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Account Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/accounts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <div class="Container">
+        <div class="Table-Container">
+            <div class="search-container">
+                <header class="Header">Accounts</header>
+                <div class="search-input"> 
+                  <a href="" target="_blank" hidden></a>
+                  <input type="text" placeholder="Type to search.."> <!--account query (email,name,ID)-->
+                  <div class="icon"><i class="fas fa-search"></i></div> <!--search button for query-->
+                </div>  
+            </div>
+                <table class="table">
+                    <thead> <!--Table head-->
+                        <tr>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody> <!--Table body-->
+                        <tr>
+                            <td data-label="Email">bjklayne.abordo-03@cpu.edu.ph</td>
+                            <td data-label="Name">BJ Klayne Abordo</td>
+                            <td data-label="ID">03-0772-12</td>
+                            <td data-label="Account Status"><button>Deactivated</button></td> <!---button to activate or deactivate account-->
+                        </tr>
+                        <tr>
+                            <td data-label="Email">juan.delacruz-00@cpu.edu.ph</td>
+                            <td data-label="Name">Juan De la cruz</td>
+                            <td data-label="ID">00-0000-00</td>
+                            <td data-label="Account Status"><button>Activated</button></td> <!---button to activate or deactivate account-->
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div> 
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Admin File Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/admin-profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <div class="Container">
+        <div class="Table-Container">
+            <div class="search-container">
+                <header class="Header">File Manager</header>
+                <div class="search-input"> 
+                  <a href="" target="_blank" hidden></a>
+                  <input type="text" placeholder="Type to search.."> <!--file query (Title,College,Author,DatePublished)-->
+                  <div class="icon"><i class="fas fa-search"></i></div> <!--search button for query-->
+                </div>  
+            </div>
+                <table class="table">
+                    <thead> <!--Table head-->
+                        <tr>
+                            <th>Thesis Title</th> 
+                            <th>College</th> 
+                            <th>Author</th> 
+                            <th>Date Published</th>
+                            <th>  </th>
+                        </tr>
+                    </thead>
+                    <tbody> <!--Table body-->
+                        <tr>
+                            <td data-label="Title">Online Thesis Library</td> <!---Title from input-box upload page(updated))-->
+                            <td data-label="College">Computer Science</td>  <!---College from input-box upload page(updated))-->
+                            <td data-label="Author">Jayson Carganillo, Edcel Recio, BJ Abordo</td> <!---Author from input-box upload page(updated))-->
+                            <td data-label="Date Published">03-25-2021</td> <!--Date Published-->
+                            <td> <!--Buttons (READ, DOWNLOAD, DELETE)-->
+                                <button>Read</button> 
+                                <button>Download</button>
+                                <button>Delete</button>
+                            </td>                           
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div> 
+</body>
+</html>

@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  background: white;
+  padding: 0px;
+}
+
+.header{
+  width: 100%;
+  height: 12vh;
+  background: white;
+  padding: 10px 30px 10px 30px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  display: flex;
+}
+
+.left-header{
+  width: 23%;
+  height: 100%;
+  display: flex;
+}
+
+.logo{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 25px;
+  width: 5%;
+  padding: 9px;
+}
+
+.left-header .logo-name a{
+  text-decoration: none;
+  color: black;
+}
+
+.logo-name{
+  color: #4E525E;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-bottom: 4px;
+  margin-left: 40px;
+  width: 60%;
+  font-weight: 500;
+  font-size: 12px;   
+  font-family: Montserrat,sans-serif;
+  filter: drop-shadow(4px 0px 4px rgba(0, 0, 0, 0.25));
+}
+
+.middle-header{
+  width: 58%;
+  height: 100%;
+}
+
+.header .search-input{
+  background: #fff;
+  margin: 10px 30px;
+  width: 65%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+  z-index: 2;
+}
+
+.search-input input{
+  height: 4.5vh;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 16px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+}
+
+.search-input.active input{
+  border-radius: 5px 5px 0 0;
+}
+
+.search-input .autocom-box{
+  position: relative;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.search-input.active .autocom-box{
+  position: relative;
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.autocom-box li{
+  position: relative;
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.search-input.active .autocom-box li{
+  position: relative;
+  display: block;
+  z-index: 2;
+}
+.autocom-box li:hover{
+  position: relative;
+  background: #efefef;
+  z-index: 2;
+}
+
+.search-input .icon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 4.5vh;
+  width: 4.5vh;
+  text-align: center;
+  line-height: 5vh;
+  font-size: 3vh;
+  color: #007DAA;
+  cursor: pointer;
+}
+
+.right-header{ 
+  width: 19%;
+  height: 100%;
+  display: flex;
+  font-size: 12px;   
+  font-family: Montserrat,sans-serif;;
+}
+
+.right-header .log-in a{
+  text-decoration: none;
+  color: #4E525E;
+}
+
+.right-header .log-in{
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #4E525E;
+  padding-left: 15px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+.right-header .log-in-btn a{
+  text-decoration: none;
+  font-size: 20px;
+  color: #4E525E;
+}
+.right-header .log-in-btn{
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 15px;
+}
+
+.right-header .settings{
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #4E525E;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+.right-header .settings-btn a{
+  text-decoration: none;
+  font-size: 20px;
+  color: #4E525E;
+}
+
+.right-header .settings-btn{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+::selection{
+  background: rgba(23,162,184,0.3);
+}
+
+.wrapper{
+  max-width: 700px;
+  width: 100%;
+  margin: 0px auto;
+  padding: 0px 30px 30px 30px;
+  background: #fff;
+}
+
+.wrapper nav{
+  position: relative;
+  width: 80%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.wrapper nav label{
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  color: #4E525E;
+  font-size: 17px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0 1px;
+  transition: all 0.3s ease;
+}
+.wrapper nav label:hover{
+  background: rgba(23,162,184,0.3);
+}
+
+#relevance:checked ~ nav label.relevance,
+#views:checked ~ nav label.views,
+#alphabet:checked ~ nav label.alphabet,
+#date:checked ~ nav label.date{
+color: #4E525E;
+height: 105%;
+width: 101.5%;
+margin-top: 10px;
+z-index: 1;
+background-color:white;
+}
+
+nav label i{
+    padding-right: 7px;
+}
+
+nav .slider{
+position: absolute;
+height: 100%;
+width: 25.25%;
+left: 0;
+bottom: 0;
+z-index: 0;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+background: white;
+border: 1px solid #4E525E;
+transition: all 0.3s ease;
+}
+
+input[type="radio"]{
+display: none;
+}
+
+#views:checked ~ nav .slider{
+    left: 25%;
+}
+#alphabet:checked ~ nav .slider{
+    left: 49.75%;
+}
+#date:checked ~ nav .slider{
+    left: 74.75%;
+}
+
+
+section .content{
+    display: none;
+    margin-top: 1.5vh;
+    background: #fff;
+}
+#relevance:checked ~ section .content-1,
+#views:checked ~ section .content-2,
+#alphabet:checked ~ section .content-3,
+#date:checked ~ section .content-4{
+display: block;
+}
+
+section .content p{
+text-align: justify;
+}
+
+.line{
+position: absolute;
+width: 100%;
+height: 0px;
+left: 0px;
+top: 128px;
+border-bottom: 1px solid #4E525E;
+}
+
+.title{
+    color: #007DAA;
+    font-size: 18px;
+    font-family: montserrat,sans-serif;
+    font-weight: bold;
+    padding-top: 50px;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+.intro{
+    height: max-content;
+    color: #4A5060;
+    font-size: 14px;
+    font-family: montserrat,sans-serif;
+    padding-left: 0px;
+    padding-right:35px;
+}
+
+.author{
+    color: #000000;
+    font-size: 16px;
+    font-family: montserrat,sans-serif;
+    padding-left: 0px;
+    padding-right: 10px;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+.title{
+  width: 100%;
+}
+
+.title input{
+  position: absolute;
+  left: 66%;
+  background: #E48A2A;
+  border: none;
+  font-weight: 600;
+  width: 5%;
+  color: white;
+}
+
+.title input:hover{
+  background: white;
+  color: #E48A2A;
+}
+
+@media(max-width: 1075px){
+  .line{
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  left: 0px;
+  top: 118px;
+  border-bottom: 1px solid #4E525E;
+  }
+    
+}
+
+@media(max-width: 530px){
+  .line{
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  left: 0px;
+  top: 118px;
+  border-bottom: 1px solid #4E525E;
+  }
+    
+}

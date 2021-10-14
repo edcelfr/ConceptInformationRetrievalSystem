@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Advance search Page</title>
+    <link rel="stylesheet" href="../static/css/advanced-search.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Advance Search</div>
+      <label for="College">Display only thesis from:</label><!--specific college where the user wants to search a document-->
+
+      <select class="College"> <!--College Choices-->
+        <option value="ALL_COLLEGES">ALL COLLEGES</option>
+        <option value="AGRICULTURE">COLLEGE OF AGRICULTURE</option>
+        <option value="ARTS-&-SCIENCES">COLLEGE OF ARTS & SCIENCES</option>
+        <option value="BUSINESS_&_ACCOUNTANCY">COLLEGE BUSINESS & ACCOUNTANCY</option>
+        <option value="COMPUTER_STUDIES">COLLEGE OF COMPUTER STUDIES</option>
+        <option value="ENGINEERING">COLLEGE OF ENGINEERING</option>
+        <option value="HOSPITALITY_MANAGEMENT">COLLEGE OF HOSPITALITY MANAGEMENT</option>
+        <option value="MEDICAL_LABORATORY_SCIENCE">COLLEGE OF MEDICAL LABORATORY SCIENCE</option>
+        <option value="NURSING">COLLEGE OF NURSING</option>
+        <option value="PHARMACY">COLLEGE OF PHARMACY</option>
+        <option value="LAW">COLLEGE OF LAW</option>
+        <option value="MEDICINE">COLLEGE OF MEDICINE</option>
+        <option value="THEOLOGY">COLLEGE OF THEOLOGY</option>
+        <option value="GRADUATE STUDIES">SCHOOL OF GRADUATE STUDIES</option>
+      </select>
+      
+      <br>
+      <div class="Match"> <!--Word matching-->
+        <label>Retrieve documents with...</label><br>
+        <label>all these words: </label><input type="text"><br><!--use all words the user input in this box-->
+        <label>any of these words: </label><input type="text"><br><!--use any of these words to find a certain document-->
+        <label>none of these words: </label><input type="text"><!--none of this words should appear in the document the user is finding-->
+      </div>
+
+      <div class="Date">
+        <br>
+        <label>Custom Year between:</label> <!--user choose between date 1 and date 2-->
+        <input type="number" min="1900" max="2099" step="1" value="2010" class="from-date"> <!--date1-->
+        <label>and</label>
+        <input type="number" min="1900" max="2099" step="1" value="2021" class="to-date">  <!--date2-->
+        
+      <div class="button"> <!--button for advance searc-->
+          <input type="submit" value="Advance Search">
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

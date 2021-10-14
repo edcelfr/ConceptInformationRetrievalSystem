@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Page</title>
+    <link rel="stylesheet" href="../static/css/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <form action="/up" method="POST" enctype="multipart/form-data">
+        <div class="area">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <header>Browse File to Upload</header>
+            <input type="file" name="filename">Browse File</input> <!--browse file button for uploading-->
+        </div>
+        <div class="file-details">
+            <div class="input-box"> <!--these input box is for thesis title-->
+                <span class="details">Thesis Title</span> 
+                <input type="text" placeholder="Title" name="title" required />
+            </div>
+            <div class="input-box"> <!--these input box is for author's college-->
+                <span class="details">College</span> 
+                <input type="text" placeholder="College" name="college" required />
+            </div>
+            <div class="input-box"> <!--these input box is for author of thesis-->
+                <span class="details">Author</span> 
+                <input type="text" placeholder="Author" name="author" required />
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>   
+        </form>  
+    </div> 
+</body>
+</html>
