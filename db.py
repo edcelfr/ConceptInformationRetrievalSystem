@@ -1,6 +1,9 @@
 import sqlite3 as sql
 from wordnet_helper import get_lemmas
 from nltk.corpus import wordnet as wn
+import time
+
+wn.synsets("")
 
 def init_db():
     conn = sql.connect("database.db")
@@ -29,6 +32,7 @@ def upload_document(concepts, filename, title, author, college, keywords, word_c
     conn.close()
 
 def get_documents(concepts, authors, sort_type="relevance"):
+    start_time = time.time()
     # TODO: combine concept retrieval with term retrieval
     results = []
     lemmas = []
@@ -70,9 +74,11 @@ def get_documents(concepts, authors, sort_type="relevance"):
         results = sorted(results, key=lambda e: e[3], reverse=True)
     conn.commit()
     conn.close()
+    print(time.time() - start_time)
     return results
 
 def get_documents_by_term(terms):
+    start_time = time.time()
     # keep for copying code to db.py
     conn = sql.connect("database.db")
     c = conn.cursor()
@@ -88,6 +94,7 @@ def get_documents_by_term(terms):
     # for testing first
     conn.commit()
     conn.close()
+    print(time.time() - start_time)
     return results
 
 def add_view(filename):
