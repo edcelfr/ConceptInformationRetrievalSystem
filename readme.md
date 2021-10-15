@@ -11,7 +11,7 @@ Upon having nltk installed:
 - Click "Download"
 
 To test concept extraction after all previous steps:
-- Run the main Python file in interactive mode with "python -i main.py" in Command Prompt.
+- Run the main Python file in interactive mode with "python -i test.py" in Command Prompt.
 - Type in "[variable_name] = analyze_concepts('[file_name].pdf')"
 - Wait for the analysis to finish, and your concepts should be stored in [variable_name]
 - View concepts (they are sorted in order of relevance within document) by typing in "[variable_name]"
