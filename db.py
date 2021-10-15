@@ -19,15 +19,15 @@ def init_db():
 def upload_document(concepts, filename, title, author, college, keywords, word_count):
     conn = sql.connect("database.db")
     c = conn.cursor()
-    c.execute("INSERT INTO documents (title, author, college, views, filename) VALUES ('" + title + "', '" + author + "', '" + college +"', 0, '" + filename + "')")
+    c.execute("INSERT INTO documents (title, author, college, views, filename) VALUES (?, ?, ?, ?, ?)", (title, author, college, 0, filename))
     c.execute("SELECT * FROM documents WHERE filename = ?", (filename,))
     id = c.fetchone()[0]
     for concept in concepts:
-        c.execute("INSERT INTO concepts (concept, documentID) VALUES ('" + concept + "', " + str(id) + ")")
+        c.execute("INSERT INTO concepts (concept, documentID) VALUES (?, ?)", (concept, id))
     for keyword in keywords:
-        c.execute("INSERT INTO keywords (keyword, documentID, frequency) VALUES ('" + keyword + "', " + str(id) + ", " + str(keywords[keyword]) + ")")
+        c.execute("INSERT INTO keywords (keyword, documentID, frequency) VALUES (?, ?, ?)", (keyword, id, keywords[keyword]))
     for word in word_count:
-        c.execute("INSERT INTO terms(term, documentID, frequency) VALUES ('" + word + "', '" + str(id) + "', " + str(word_count[word]) + ")")
+        c.execute("INSERT INTO terms(term, documentID, frequency) VALUES (?, ?, ?)", (word, id, word_count[word]))
     conn.commit()
     conn.close()
 
