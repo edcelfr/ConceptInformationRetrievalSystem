@@ -75,6 +75,7 @@ def get_documents(concepts, authors, sort_type="relevance"):
     conn.commit()
     conn.close()
     print(time.time() - start_time)
+    print(str(len(results)) + " documents found")
     return results
 
 def get_documents_by_keyword(keywords):
@@ -95,6 +96,7 @@ def get_documents_by_keyword(keywords):
     conn.commit()
     conn.close()
     print(time.time() - start_time)
+    print(str(len(results)) + " documents found")
     return results
 
 def add_view(filename):
@@ -143,4 +145,5 @@ def get_all_documents():
         results.append(row)
     conn.commit()
     conn.close()
+    print(str(len(results)) + " documents found")
     return results
