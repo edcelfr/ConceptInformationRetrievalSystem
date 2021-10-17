@@ -135,3 +135,12 @@ def get_all_keywords():
     conn.close()
     return results
 
+def get_all_documents():
+    results = []
+    conn = sql.connect("database.db")
+    c = conn.cursor()
+    for row in c.execute("SELECT * FROM documents"):
+        results.append(row)
+    conn.commit()
+    conn.close()
+    return results
