@@ -20,11 +20,5 @@ class AnalysisThread(threading.Thread):
         content = words[0]
         analysis = analyze_concepts(words[1])
         concepts = [a.name() for a in analysis]
-        keywords = dict()
-        for word in content:
-            if word in keywords:
-                keywords[word] += 1
-            else:
-                keywords[word] = 1
-        upload_document(concepts, self.filename, self.title, self.author, self.college, keywords, words[2])
+        upload_document(concepts, self.filename, self.title, self.author, self.college, words[2])
         lock.release()

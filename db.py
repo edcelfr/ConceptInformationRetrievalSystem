@@ -11,12 +11,11 @@ def init_db():
     c.execute("CREATE TABLE documents (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, college TEXT, views INTEGER, filename TEXT)")
     c.execute("CREATE TABLE concepts (id INTEGER PRIMARY KEY AUTOINCREMENT, concept TEXT, documentID INTEGER)")
     c.execute("CREATE TABLE keywords (id INTEGER PRIMARY KEY AUTOINCREMENT, keyword TEXT, documentID INTEGER, frequency INTEGER)")
-    c.execute("CREATE TABLE terms (id INTEGER PRIMARY KEY AUTOINCREMENT, term TEXT, documentID TEXT, frequency INTEGER)")
     c.execute("CREATE TABLE students (id TEXT PRIMARY KEY, fullName TEXT, email TEXT, college TEXT, password TEXT)")
     conn.commit()
     conn.close()
 
-def upload_document(concepts, filename, title, author, college, keywords, word_count):
+def upload_document(concepts, filename, title, author, college, keywords):
     conn = sql.connect("database.db")
     c = conn.cursor()
     c.execute("INSERT INTO documents (title, author, college, views, filename) VALUES (?, ?, ?, ?, ?)", (title, author, college, 0, filename))
@@ -26,14 +25,12 @@ def upload_document(concepts, filename, title, author, college, keywords, word_c
         c.execute("INSERT INTO concepts (concept, documentID) VALUES (?, ?)", (concept, id))
     for keyword in keywords:
         c.execute("INSERT INTO keywords (keyword, documentID, frequency) VALUES (?, ?, ?)", (keyword, id, keywords[keyword]))
-    for word in word_count:
-        c.execute("INSERT INTO terms(term, documentID, frequency) VALUES (?, ?, ?)", (word, id, word_count[word]))
     conn.commit()
     conn.close()
 
 def get_documents(concepts, authors, sort_type="relevance"):
     start_time = time.time()
-    # TODO: combine concept retrieval with term retrieval
+    # TODO: combine concept retrieval with keyword retrieval
     results = []
     lemmas = []
     count = 0
@@ -65,7 +62,10 @@ def get_documents(concepts, authors, sort_type="relevance"):
         results.append([row[0], row[1], row[2]])
     for i in range(len(results)):
         for row in c.execute("SELECT SUM(frequency) FROM documents INNER JOIN keywords ON documents.id == keywords.documentID WHERE " + frequency_condition + " AND filename == '" + results[i][1] + "'"):
-            results[i].append(row[0])
+            if row[0] is None:
+                results[i].append(0)
+            else:
+                results[i].append(row[0])
     for i in range(len(results)):
         results[i] = tuple(results[i])
     if sort_type == "views":
@@ -77,20 +77,20 @@ def get_documents(concepts, authors, sort_type="relevance"):
     print(time.time() - start_time)
     return results
 
-def get_documents_by_term(terms):
+def get_documents_by_keyword(keywords):
     start_time = time.time()
     # keep for copying code to db.py
     conn = sql.connect("database.db")
     c = conn.cursor()
     query = ""
-    for i in range(len(terms)):
+    for i in range(len(keywords)):
         if i == 0:
-            query = "SELECT terms.term, title, terms.documentID, terms.frequency FROM terms INNER JOIN documents ON terms.documentID = documents.id INNER JOIN terms AS terms0 ON terms.id == terms0.id WHERE terms0.term = '" + terms[i] + "' " 
+            query = "SELECT keywords.keyword, title, filename, keywords.documentID, keywords.frequency FROM keywords INNER JOIN documents ON keywords.documentID = documents.id INNER JOIN keywords AS keywords0 ON keywords.id == keywords0.id WHERE keywords0.keyword = '" + keywords[i] + "' " 
         else:
-            query += "INNER JOIN terms AS terms" + str(i) + " ON terms.id == terms" + str(i) + ".id WHERE terms" + str(i) + ".term = '" + terms[i] + "' " 
+            query += "INNER JOIN keywords AS keywords" + str(i) + " ON keywords.id == keywords" + str(i) + ".id WHERE keywords" + str(i) + ".keyword = '" + keywords[i] + "' " 
     results = []
     for row in c.execute(query):
-        results.append(row[1])
+        results.append([row[1], row[2]])
     # for testing first
     conn.commit()
     conn.close()
@@ -125,12 +125,13 @@ def clear_keywords():
     conn.commit()
     conn.close()
 
-def get_all_documents():
+def get_all_keywords():
     results = []
     conn = sql.connect("database.db")
     c = conn.cursor()
-    for row in c.execute("SELECT * FROM documents"):
+    for row in c.execute("SELECT * FROM keywords"):
         results.append(row)
     conn.commit()
     conn.close()
     return results
+
